@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from "cors"
 import mongoose from 'mongoose'
 import handleErrors from './handleErrors.js'
 import { registerValidator, loginValidator, postCreateValidation} from './validations.js'
@@ -17,6 +18,9 @@ mongoose
 
 const app = express()
 app.use(express.json());
+app.use(cors())
+
+
 
 app.post('/auth/login',loginValidator, handleErrors,UserController.login)
 app.post('/auth/register',registerValidator,handleErrors, UserController.register)
